@@ -1,9 +1,9 @@
 #[cfg(test)]
-#[cfg(feature = "plex")]
+#[cfg(feature = "jellyfin")]
 use crate::MediaData;
 
 #[test]
-#[cfg(feature = "plex")]
+#[cfg(feature = "jellyfin")]
 fn name() {
     let m = torrent_name_parser::Metadata::from("narcos.s01e10.1080p.bluray.x264-rovers").unwrap();
     assert_eq!(m.series_name(), "Narcos");
@@ -36,13 +36,6 @@ fn name() {
     assert_eq!(m.year_as_string(), "2019");
     assert_eq!(
         m.full_file_name(),
-        "A.Shaun.the.Sheep.Movie.Farmageddon.(2019).1080p.{imdb-tttt6193408}"
+        "A.Shaun.the.Sheep.Movie.Farmageddon.(2019).1080p.[imdbid-tt6193408]"
     );
-}
-
-#[test]
-#[cfg(feature = "plex")]
-fn doctor_who() {
-    let m = torrent_name_parser::Metadata::from("doctor.who.(2013).S01e1.avi").unwrap();
-    assert_eq!(m.series_name(), "Doctor Who (2013)");
 }
