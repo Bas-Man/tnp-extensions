@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#[cfg(test)]
 #[cfg(feature = "plex")]
 use crate::MediaData;
 

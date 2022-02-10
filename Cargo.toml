@@ -10,7 +10,14 @@ name = "plex"
 path = "examples/plex.rs"
 required-features = ["plex"]
 
+[[example]]
+name = "custom"
+path = "examples/custom_struct.rs"
+required-features = ["tnp"]
+
 [features]
+tnp = ["torrent-name-parser"]
+#titlecase = ["titlecase"]
 plex = ["torrent-name-parser", "titlecase"]
 
 [dependencies]
