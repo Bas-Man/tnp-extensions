@@ -1,3 +1,4 @@
+#[cfg(feature = "plex")]
 pub mod plex {
     use crate::MediaData;
     use titlecase;

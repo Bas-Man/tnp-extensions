@@ -1,7 +1,9 @@
 #[allow(unused_imports)]
+#[cfg(feature = "plex")]
 use crate::MediaData;
 
 #[test]
+#[cfg(feature = "plex")]
 fn name() {
     let m = torrent_name_parser::Metadata::from("narcos.s01e10.1080p.bluray.x264-rovers").unwrap();
     assert_eq!(m.series_name(), "Narcos");

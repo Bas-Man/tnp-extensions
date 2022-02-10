@@ -5,6 +5,18 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[example]]
+name = "plex"
+path = "examples/plex.rs"
+required-features = ["plex"]
+
+[features]
+plex = ["torrent-name-parser", "titlecase"]
+
 [dependencies]
-titlecase = "1.1.0"
-torrent-name-parser = "0.10.0"
+titlecase = { version = "1.1.0", optional = true }
+torrent-name-parser = { version = "0.10.0", optional = true }
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

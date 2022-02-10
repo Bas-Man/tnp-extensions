@@ -1,3 +1,8 @@
+#![forbid(unsafe_code)]
+//#![warn(missing_docs)]
+#![cfg_attr(docsrs, feature(doc_cfg))]
+
+#[cfg(feature = "plex")]
 pub mod plex;
 mod tests;
 
