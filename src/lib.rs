@@ -1,9 +1,9 @@
 pub mod plex;
 mod tests;
 
-pub trait CustomNamer {
+pub trait MediaData {
     fn series_name(&self) -> String;
-    fn show_name(&self) -> String;
+    fn capitalize_title(&self) -> String;
     fn show_year(&self) -> String;
     //fn country(&self) -> String;
     fn season_to_string(&self) -> String;

@@ -1,10 +1,10 @@
-use custom_tv_show_namer::CustomNamer;
+use custom_tv_show_namer::MediaData;
 use torrent_name_parser::Metadata;
 
 fn main() {
     println!("hi");
     let m = Metadata::from("narcos.s01e10.1080p.bluray.x264-rovers").unwrap();
-    assert_eq!(m.show_name(), "Narcos");
+    assert_eq!(m.capitalize_title(), "Narcos");
     assert_eq!(m.full_file_name(), "Narcos S01");
     println!("{}", m.full_file_name());
     println!("{}", m.season_to_string());
