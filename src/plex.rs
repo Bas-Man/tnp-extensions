@@ -16,9 +16,9 @@ pub mod plex {
         fn capitalize_title(&self) -> String {
             titlecase::titlecase(&self.title())
         }
-        fn show_year(&self) -> String {
+        fn year_as_string(&self) -> String {
             if let Some(numeric_year) = self.year() {
-                return numeric_year.to_string();
+                return std::format!("{}", numeric_year);
             };
             "".to_string()
         }
@@ -32,7 +32,7 @@ pub mod plex {
                 name.push_str(&std::format!(" S{:02}", season));
             }
             if let Some(_) = self.episode() {
-                name.push_str(&self.episode_to_string());
+                name.push_str(&self.episode_as_string());
             }
             if let Some(resolution) = self.resolution() {
                 name.push_str(&std::format!(" {}", resolution));
@@ -48,7 +48,7 @@ pub mod plex {
             }
             name.replace(' ', ".")
         }
-        fn season_to_string(&self) -> String {
+        fn season_as_string(&self) -> String {
             let mut season_string = String::new();
             if let Some(numeric_season) = self.season() {
                 season_string.push_str(&std::format!("S{:02}", numeric_season));
@@ -56,7 +56,7 @@ pub mod plex {
             season_string
         }
 
-        fn episode_to_string(&self) -> String {
+        fn episode_as_string(&self) -> String {
             let mut episode_string = String::new();
             if let Some(numeric_episode) = self.episode() {
                 episode_string.push_str(&std::format!("E{:02}", numeric_episode));

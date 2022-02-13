@@ -8,6 +8,6 @@ fn main() {
     assert_eq!(m.capitalize_title(), "Narcos");
     assert_eq!(m.full_file_name(), "Narcos.S01E10.1080p.BLURAY");
     println!("{}", m.full_file_name());
-    println!("{}", m.season_to_string());
-    println!("{}", m.episode_to_string());
+    println!("{}", m.season_as_string());
+    println!("{}", m.episode_as_string());
 }

@@ -11,13 +11,13 @@ impl MediaData for MyData {
     fn capitalize_title(&self) -> String {
         unimplemented!("not implemented")
     }
-    fn show_year(&self) -> String {
+    fn year_as_string(&self) -> String {
         unimplemented!("not implemented")
     }
-    fn season_to_string(&self) -> String {
+    fn season_as_string(&self) -> String {
         unimplemented!("not implemented")
     }
-    fn episode_to_string(&self) -> String {
+    fn episode_as_string(&self) -> String {
         unimplemented!("not implemented")
     }
     fn full_file_name(&self) -> String {
