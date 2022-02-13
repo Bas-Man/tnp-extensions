@@ -4,7 +4,8 @@ pub mod plex {
     use crate::MediaData;
     use titlecase;
     use torrent_name_parser;
-
+    /// MediaData Implementation for torrent_name_parser
+    #[cfg_attr(docsrs, doc(cfg(feature = "plex")))]
     impl MediaData for torrent_name_parser::Metadata {
         fn series_name(&self) -> String {
             let mut series_name = String::new();
