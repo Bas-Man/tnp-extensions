@@ -13,12 +13,13 @@ required-features = ["plex"]
 [[example]]
 name = "custom"
 path = "examples/custom_struct.rs"
-required-features = ["tnp"]
+required-features = ["tnp", "title"]
 
 [features]
-tnp = ["torrent-name-parser"]
-#titlecase = ["titlecase"]
-plex = ["torrent-name-parser", "titlecase"]
+tnp = ["torrent-name-parser", "titlecase"]
+title = ["titlecase"]
+plex = ["tnp"]
+jellyfin = ["torrent-name-parser", "titlecase"]
 
 [dependencies]
 titlecase = { version = "1.1.0", optional = true }

@@ -39,3 +39,10 @@ fn name() {
         "A.Shaun.the.Sheep.Movie.Farmageddon.(2019).1080p.{imdb-tttt6193408}"
     );
 }
+
+#[test]
+#[cfg(feature = "plex")]
+fn doctor_who() {
+    let m = torrent_name_parser::Metadata::from("doctor.who.(2013).S01e1.avi").unwrap();
+    assert_eq!(m.series_name(), "Doctor Who (2013)");
+}

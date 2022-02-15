@@ -1,7 +1,8 @@
-#[cfg(feature = "plex")]
+#[cfg(any(feature = "tnp", feature = "plex", feature = "jellyfin"))]
 /// Implementation of of MediaData suitable for the Plex Media Server.
-pub mod plex {
+pub mod tnp {
     use crate::MediaData;
+    #[cfg(any(feature = "jellyfin", feature = "plex"))]
     use titlecase;
     use torrent_name_parser;
     /// MediaData Implementation for torrent_name_parser
@@ -46,7 +47,10 @@ pub mod plex {
                 ));
             }
             if let Some(imdb_tag) = self.imdb_tag() {
-                name.push_str(&std::format!(" {{imdb-tt{}}}", imdb_tag));
+                if cfg!(feature = "plex") {
+                    name.push_str(&std::format!(" {{imdb-tt{}}}", imdb_tag));
+                }
+                if cfg!(feature = "jellyfin") {}
             }
             name.replace(' ', ".")
         }
@@ -57,7 +61,18 @@ pub mod plex {
             };
             season_string
         }
-
+        //        fn is_mutli_episodes(&self) -> bool {
+        //            self.episodes.len() > 1
+        //       }
+        //      fn first_episode(&self) -> String {
+        //            match self.episodes.is_empty() {
+        //               false => Some(&self.episodes[0]),
+        //                true => None,
+        //          }
+        //        }
+        //       fn last_episode(&self) -> String {
+        //          self.episodes.last()
+        //     }
         fn episode_as_string(&self) -> String {
             let mut episode_string = String::new();
             if let Some(numeric_episode) = self.episode() {
