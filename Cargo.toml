@@ -1,35 +1,12 @@
 [package]
 name = "tnp-extensions"
-version = "0.0.1"
+version = "0.10.1"
 edition = "2021"
-
+authors = ["Adam.S <Bas-Man@users.noreply.github.com>"]
+license = "MIT"
+description = "Simple set of extensions privided for torrent-name-parser"
+repository = "https://github.com/Bas-Man/tnp-extensions"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[[example]]
-name = "plex"
-path = "examples/plex.rs"
-required-features = ["plex"]
-
-[[example]]
-name = "jellyfin"
-path = "examples/jellyfin.rs"
-required-features = ["jellyfin"]
-
-[[example]]
-name = "custom"
-path = "examples/custom_struct.rs"
-required-features = ["tnp", "title"]
-
-[features]
-tnp = ["torrent-name-parser", "titlecase"]
-title = ["titlecase"]
-plex = ["tnp"]
-jellyfin = ["tnp"]
-
 [dependencies]
-titlecase = { version = "1.1.0", optional = true }
-torrent-name-parser = { version = "0.10.0", optional = true }
-
-[package.metadata.docs.rs]
-all-features = true
-rustdoc-args = ["--cfg", "docsrs"]
+torrent-name-parser = "0.10.1"
