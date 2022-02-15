@@ -1,13 +1,15 @@
 #[cfg(any(feature = "plex", feature = "jellyfin"))]
-/// Implementation of of MediaData suitable for the Plex Media Server.
+/// Implementation of MediaData suitable for the Plex or Jellyfin Media Server.
 pub mod tnp {
     use crate::MediaData;
-    #[cfg(any(feature = "jellyfin", feature = "plex"))]
+    //#[cfg(any(feature = "jellyfin", feature = "plex"))]
     use titlecase;
     use torrent_name_parser;
     /// MediaData Implementation for torrent_name_parser
-    #[cfg_attr(docsrs, doc(cfg(feature = "plex")))]
+    #[cfg_attr(docsrs, doc(cfg(any(feature = "plex", feature = "jellyfin"))))]
     impl MediaData for torrent_name_parser::Metadata {
+        /// Test comment
+        #[cfg_attr(docsrs, doc(cfg(any(feature = "plex", feature = "jellyfin"))))]
         fn series_name(&self) -> String {
             let mut series_name = String::new();
             series_name.push_str(&self.capitalize_title());

@@ -1,7 +1,4 @@
-use custom_tv_show_namer::MediaData;
-#[cfg(feature = "title")]
-use titlecase;
-#[cfg(feature = "tnp")]
+use tnp_extensions::MediaData;
 use torrent_name_parser::Metadata;
 
 struct MyData(torrent_name_parser::Metadata);
