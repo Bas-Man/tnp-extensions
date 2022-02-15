@@ -2,6 +2,10 @@
 //#![warn(missing_docs)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+#[cfg(all(feature = "plex", feature = "jellyfin"))]
+compile_error!(
+    "Feature 'plex' and 'jellyfin' are mutually exclusive and cannot be enabled together"
+);
 mod tests;
 mod tnp;
 
