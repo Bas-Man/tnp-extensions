@@ -49,8 +49,9 @@ pub mod tnp {
             if let Some(imdb_tag) = self.imdb_tag() {
                 if cfg!(feature = "plex") {
                     name.push_str(&std::format!(" {{imdb-tt{}}}", imdb_tag));
+                } else if cfg!(feature = "jellyfin") {
+                    name.push_str(&std::format!(" [imdbid-{}]", imdb_tag));
                 }
-                if cfg!(feature = "jellyfin") {}
             }
             name.replace(' ', ".")
         }

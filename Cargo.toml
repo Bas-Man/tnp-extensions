@@ -11,6 +11,11 @@ path = "examples/plex.rs"
 required-features = ["plex"]
 
 [[example]]
+name = "jellyfin"
+path = "examples/jellyfin.rs"
+required-features = ["plex"]
+
+[[example]]
 name = "custom"
 path = "examples/custom_struct.rs"
 required-features = ["tnp", "title"]
