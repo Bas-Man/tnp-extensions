@@ -1,6 +1,6 @@
 [package]
-name = "custom-tv-show-namer"
-version = "0.1.0"
+name = "tnp-extensions"
+version = "0.0.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -13,7 +13,7 @@ required-features = ["plex"]
 [[example]]
 name = "jellyfin"
 path = "examples/jellyfin.rs"
-required-features = ["plex"]
+required-features = ["jellyfin"]
 
 [[example]]
 name = "custom"
@@ -24,7 +24,7 @@ required-features = ["tnp", "title"]
 tnp = ["torrent-name-parser", "titlecase"]
 title = ["titlecase"]
 plex = ["tnp"]
-jellyfin = ["torrent-name-parser", "titlecase"]
+jellyfin = ["tnp"]
 
 [dependencies]
 titlecase = { version = "1.1.0", optional = true }
