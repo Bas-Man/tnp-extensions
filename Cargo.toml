@@ -18,17 +18,16 @@ required-features = ["jellyfin"]
 [[example]]
 name = "custom"
 path = "examples/custom_struct.rs"
-required-features = ["tnp", "title"]
+required-features = ["title"]
 
 [features]
-tnp = ["torrent-name-parser", "titlecase"]
 title = ["titlecase"]
-plex = ["tnp"]
-jellyfin = ["tnp"]
+plex = ["title"]
+jellyfin = ["title"]
 
 [dependencies]
 titlecase = { version = "1.1.0", optional = true }
-torrent-name-parser = { version = "0.10.0", optional = true }
+torrent-name-parser = "0.10.0"
 
 [package.metadata.docs.rs]
 all-features = true

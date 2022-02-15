@@ -1,5 +1,4 @@
-use custom_tv_show_namer::MediaData;
-#[cfg(feature = "plex")]
+use tnp_extensions::MediaData;
 use torrent_name_parser::Metadata;
 
 fn main() {

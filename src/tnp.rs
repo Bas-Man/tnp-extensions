@@ -1,4 +1,4 @@
-#[cfg(any(feature = "tnp", feature = "plex", feature = "jellyfin"))]
+#[cfg(any(feature = "plex", feature = "jellyfin"))]
 /// Implementation of of MediaData suitable for the Plex Media Server.
 pub mod tnp {
     use crate::MediaData;
