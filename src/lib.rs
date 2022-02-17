@@ -1,7 +1,12 @@
 #![forbid(unsafe_code)]
 //#![warn(missing_docs)]
-#![cfg_attr(docsrs, feature(doc_cfg))]
+//#![cfg_attr(docsrs, feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg, doc_auto_cfg))]
 
+#[cfg(all(feature = "plex", feature = "jellyfin"))]
+compile_error!(
+    "Feature 'plex' and 'jellyfin' are mutually exclusive and cannot be enabled together"
+);
 mod tests;
 mod tnp;
 
@@ -10,14 +15,14 @@ pub use tnp::tnp as MediaServer;
 
 pub trait MediaData {
     /// Returns the Series Name
-    fn series_name(&self) -> String;
+    fn series_directory_name(&self) -> String;
+    fn series_directory_name_with_imdb_tag(&self) -> String;
+    //fn series_name_with_imdb_tt(&self) -> String;
     /// Returns the Title with capitalization.
     fn capitalize_title(&self) -> String;
-    /// Returns the Year as a String
-    fn year_as_string(&self) -> String;
-    //fn country(&self) -> String;
-    fn season_as_string(&self) -> String;
-    fn episode_as_string(&self) -> String;
+    fn unmangled_title(&self) -> Option<&str> {
+        None
+    }
     //    fn is_mutli_episodes(&self) -> bool;
     //    fn first_episode(&self) -> String;
     //    fn last_episode(&self) -> String;

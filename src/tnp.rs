@@ -6,26 +6,35 @@ pub mod tnp {
     use titlecase;
     use torrent_name_parser;
     /// MediaData Implementation for torrent_name_parser
-    #[cfg_attr(docsrs, doc(cfg(any(feature = "plex", feature = "jellyfin"))))]
+    //#[cfg_attr(docsrs, doc(cfg(any(feature = "plex", feature = "jellyfin"))))]
     impl MediaData for torrent_name_parser::Metadata {
         /// Test comment
-        #[cfg_attr(docsrs, doc(cfg(any(feature = "plex", feature = "jellyfin"))))]
-        fn series_name(&self) -> String {
+        //   #[cfg_attr(docsrs, doc(cfg(any(feature = "plex", feature = "jellyfin"))))]
+        fn series_directory_name(&self) -> String {
             let mut series_name = String::new();
-            series_name.push_str(&self.capitalize_title());
+            if let Some(unmangled_title) = self.unmangled_title() {
+                series_name.push_str(unmangled_title)
+            } else {
+                series_name.push_str(&self.capitalize_title());
+            }
             if let Some(series_year) = self.year() {
-                series_name.push_str(&std::format!(" ({})", series_year.to_string()));
+                series_name.push_str(&std::format!(" ({})", series_year));
+            }
+            series_name
+        }
+        fn series_directory_name_with_imdb_tag(&self) -> String {
+            let mut series_name = self.series_directory_name();
+            if let Some(imdb_tag) = self.imdb_tag() {
+                if cfg!(feature = "plex") {
+                    series_name.push_str(&std::format!(" {{imdb-{}}}", imdb_tag));
+                } else if cfg!(feature = "jellyfin") {
+                    series_name.push_str(&std::format!(" [imdbid-{}]", imdb_tag));
+                }
             }
             series_name
         }
         fn capitalize_title(&self) -> String {
             titlecase::titlecase(&self.title())
-        }
-        fn year_as_string(&self) -> String {
-            if let Some(numeric_year) = self.year() {
-                return std::format!("{}", numeric_year);
-            };
-            "".to_string()
         }
         fn full_file_name(&self) -> String {
             let mut name = String::new();
@@ -36,8 +45,8 @@ pub mod tnp {
             if let Some(season) = self.season() {
                 name.push_str(&std::format!(" S{:02}", season));
             }
-            if let Some(_) = self.episode() {
-                name.push_str(&self.episode_as_string());
+            if let Some(episode) = self.episode() {
+                name.push_str(&std::format!("E{:02}", episode));
             }
             if let Some(resolution) = self.resolution() {
                 name.push_str(&std::format!(" {}", resolution));
@@ -48,21 +57,7 @@ pub mod tnp {
                     quality.to_string().to_ascii_uppercase()
                 ));
             }
-            if let Some(imdb_tag) = self.imdb_tag() {
-                if cfg!(feature = "plex") {
-                    name.push_str(&std::format!(" {{imdb-tt{}}}", imdb_tag));
-                } else if cfg!(feature = "jellyfin") {
-                    name.push_str(&std::format!(" [imdbid-{}]", imdb_tag));
-                }
-            }
             name.replace(' ', ".")
-        }
-        fn season_as_string(&self) -> String {
-            let mut season_string = String::new();
-            if let Some(numeric_season) = self.season() {
-                season_string.push_str(&std::format!("S{:02}", numeric_season));
-            };
-            season_string
         }
         //        fn is_mutli_episodes(&self) -> bool {
         //            self.episodes.len() > 1
@@ -76,12 +71,5 @@ pub mod tnp {
         //       fn last_episode(&self) -> String {
         //          self.episodes.last()
         //     }
-        fn episode_as_string(&self) -> String {
-            let mut episode_string = String::new();
-            if let Some(numeric_episode) = self.episode() {
-                episode_string.push_str(&std::format!("E{:02}", numeric_episode));
-            };
-            episode_string
-        }
     }
 }

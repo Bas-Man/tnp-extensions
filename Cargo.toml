@@ -29,5 +29,5 @@ titlecase = { version = "1.1.0", optional = true }
 torrent-name-parser = "0.10.0"
 
 [package.metadata.docs.rs]
-all-features = true 
+features = ["plex"]
 rustdoc-args = ["--cfg", "docsrs"]

@@ -6,21 +6,15 @@ use crate::MediaData;
 #[cfg(feature = "plex")]
 fn name() {
     let m = torrent_name_parser::Metadata::from("narcos.s01e10.1080p.bluray.x264-rovers").unwrap();
-    assert_eq!(m.series_name(), "Narcos");
+    assert_eq!(m.series_directory_name(), "Narcos");
     assert_eq!(m.capitalize_title(), "Narcos");
-    assert_eq!(m.season_as_string(), "S01");
-    assert_eq!(m.episode_as_string(), "E10");
-    assert_eq!(m.year_as_string(), "");
     assert_eq!(m.quality(), Some("bluray"));
     assert_eq!(m.full_file_name(), "Narcos.S01E10.1080p.BLURAY");
 
     let m =
         torrent_name_parser::Metadata::from("The Flash 2014 S01E04 HDTV x264-FUM[ettv]").unwrap();
-    assert_eq!(m.series_name(), "The Flash (2014)");
+    assert_eq!(m.series_directory_name(), "The Flash (2014)");
     assert_eq!(m.capitalize_title(), "The Flash");
-    assert_eq!(m.season_as_string(), "S01");
-    assert_eq!(m.episode_as_string(), "E04");
-    assert_eq!(m.year_as_string(), "2014");
     assert_eq!(m.quality(), Some("HDTV"));
     assert_eq!(m.full_file_name(), "The.Flash.(2014).S01E04.HDTV");
 
@@ -29,14 +23,17 @@ fn name() {
     )
     .unwrap();
     assert_eq!(
-        m.series_name(),
+        m.series_directory_name(),
         "A Shaun the Sheep Movie Farmageddon (2019)"
     );
+    assert_eq!(
+        m.series_directory_name_with_imdb_tag(),
+        "A Shaun the Sheep Movie Farmageddon (2019) {imdb-tt6193408}"
+    );
     assert_eq!(m.capitalize_title(), "A Shaun the Sheep Movie Farmageddon");
-    assert_eq!(m.year_as_string(), "2019");
     assert_eq!(
         m.full_file_name(),
-        "A.Shaun.the.Sheep.Movie.Farmageddon.(2019).1080p.{imdb-tttt6193408}"
+        "A.Shaun.the.Sheep.Movie.Farmageddon.(2019).1080p"
     );
 }
 
@@ -44,5 +41,5 @@ fn name() {
 #[cfg(feature = "plex")]
 fn doctor_who() {
     let m = torrent_name_parser::Metadata::from("doctor.who.(2013).S01e1.avi").unwrap();
-    assert_eq!(m.series_name(), "Doctor Who (2013)");
+    assert_eq!(m.series_directory_name(), "Doctor Who (2013)");
 }
