@@ -38,7 +38,7 @@ pub mod tnp {
         }
         fn full_file_name(&self) -> String {
             let mut name = String::new();
-            name.push_str(&self.capitalize_title());
+            name.push_str(&self.title().to_owned().to_ascii_lowercase());
             if let Some(numeric_year) = self.year() {
                 name.push_str(&std::format!(" ({})", numeric_year));
             }
