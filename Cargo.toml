@@ -8,7 +8,6 @@ edition = "2021"
 [[example]]
 name = "plex"
 path = "examples/plex.rs"
-required-features = ["plex"]
 
 [features]
 
