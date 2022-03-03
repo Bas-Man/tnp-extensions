@@ -1,2 +1,1 @@
-mod jellyfin;
-mod plex;
+mod tnp;

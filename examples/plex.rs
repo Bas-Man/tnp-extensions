@@ -1,4 +1,3 @@
-use tnp_extensions::MediaData;
 use torrent_name_parser::Metadata;
 
 fn main() {
