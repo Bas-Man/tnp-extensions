@@ -1,6 +1,8 @@
 TNPExtension
 ============
 
+[![dependency status](https://deps.rs/repo/github/Bas-Man/tnp-extensions/status.svg)](https://deps.rs/repo/github/Bas-Man/tnp-extensions)
+
 A simple set of extensions to help with the `torrent_name_parser` crate.
 
 ```rust
@@ -17,7 +19,4 @@ println!("first Ep:{}", m.first_episode().unwrap());
 println!("last Epi:{}", m.last_episode().unwrap());
 println!("is_multi: {}", m.is_mutli_episodes());
 println!("is_subtitle: {}", m.is_subtitle());
-
-
 ```
-
